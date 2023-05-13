@@ -8,8 +8,8 @@ import {MsgRPC} from "./RPC.ts";
 function ChatBox() {
     const [messageLog, setMessageLog] = useState(new Array<MsgRPC>());
     
-    useEffect(() => MagicCircle.onMessage(messageLog[0]?.time, (msg) => {
-        setMessageLog([msg, ...messageLog]);
+    useEffect(() => MagicCircle.onMessage(messageLog[0]?.time, (msgs) => {
+        setMessageLog([...(msgs.reverse()), ...messageLog]);
     }), [messageLog]);
     
     return (

@@ -1,4 +1,4 @@
-import OBR from "@owlbear-rodeo/sdk"
+import OBR, {Metadata} from "@owlbear-rodeo/sdk"
 import {MsgRPC} from "./RPC";
 
 const MagicCircle = {
@@ -8,21 +8,20 @@ const MagicCircle = {
      * @param callback - Called with each new message received
      * @return A cleanup function, suitable for use with React's useEffect()
      */
-    onMessage(startTime: number | undefined, callback: (msg: MsgRPC)=>void) {
+    onMessage(startTime: number | undefined, callback: (msg: MsgRPC[])=>void) {
         let lastTimestamp = startTime || 0;
-        function update(metadata: any) {
-            let roomBuffer = metadata["moe.snail.magic-circle/messages"];
-            if(!(roomBuffer instanceof Array)) roomBuffer = [];
+        function update(metadata: Metadata) {
+            const rawMessages = metadata["moe.snail.magic-circle/messages"];
+            const roomBuffer: MsgRPC[] = rawMessages instanceof Array ? rawMessages : [];
 
-            if(roomBuffer.length == 0 || roomBuffer[roomBuffer.length-1].time <= lastTimestamp) return;
-            for(const msg of roomBuffer) {
-                if(msg.time <= lastTimestamp) continue;
-                callback(msg);
-                lastTimestamp = msg.time;
-            }
+            const start = roomBuffer.findIndex((m) => m.time && m.time > lastTimestamp);
+            if(start == -1) return;
+
+            lastTimestamp = roomBuffer[roomBuffer.length-1].time || Date.now();
+            callback(roomBuffer.slice(start));
         }
 
-    OBR.room.getMetadata().then(update);
+        OBR.room.getMetadata().then(update);
         return OBR.room.onMetadataChange(update);
     }
 }
