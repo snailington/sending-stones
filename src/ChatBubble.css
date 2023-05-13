@@ -1,0 +1,27 @@
+.chat-bubble {
+    float: right;
+    
+    margin: 2px 4px 2px 4px;
+    padding: 2px 4px 2px 4px;
+    
+    border: 1px solid black;
+    border-radius: 8px;
+    
+    text-align: right;
+}
+
+.chat-bubble .body {
+    float: right;
+}
+
+.chat-bubble .author {
+    font-weight: bold;
+}
+
+.chat-bubble .total {
+    float: left;
+    position: relative;
+    top: -12px;
+    font-size: 24px;
+    font-weight: bold;
+}

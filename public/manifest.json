@@ -1,0 +1,12 @@
+{
+    "name": "Sending Stones",
+    "version": "1.0.0",
+    "manifest_version": 1,
+    "action": {
+        "title": "Sending Stones",
+        "icon": "/icon.svg",
+        "popover": "/",
+        "height": 300,
+        "width": 400
+    }
+}

@@ -1,0 +1,8 @@
+.chat-input {
+    position: absolute;
+    bottom: 0;
+    
+    float: right;
+    
+    width: 100%;
+}
