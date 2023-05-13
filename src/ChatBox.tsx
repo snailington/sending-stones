@@ -2,8 +2,8 @@ import {useEffect, useState} from "react";
 import ChatBubble from "./ChatBubble.tsx";
 
 import "./ChatBox.css";
-import MagicCircle from "./client.ts";
-import {MsgRPC} from "./RPC.ts";
+
+import MagicCircle, {MsgRPC} from "magic-circle-api"
 
 function ChatBox() {
     const [messageLog, setMessageLog] = useState(new Array<MsgRPC>());
