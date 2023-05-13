@@ -1,5 +1,7 @@
 {
     "name": "Sending Stones",
+    "description": "Chat and message log (requires Magic Circle)",
+    "homepage_url": "https://github.com/snailington/sending-stones",
     "version": "1.0.0",
     "manifest_version": 1,
     "action": {

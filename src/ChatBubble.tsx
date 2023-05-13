@@ -1,5 +1,5 @@
 import "./ChatBubble.css"
-import {MsgRPC} from "./RPC.ts";
+import {MsgRPC} from "magic-circle-api";
 
 function ChatBubble({message}: {message: MsgRPC}) {
     return (
