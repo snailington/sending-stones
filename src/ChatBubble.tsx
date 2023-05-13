@@ -1,6 +1,7 @@
 import "./ChatBubble.css"
+import {MsgRPC} from "./RPC.ts";
 
-function ChatBubble({message}) {
+function ChatBubble({message}: {message: MsgRPC}) {
     return (
         <div className="chat-bubble">
             <div className="author">{message.author}</div>

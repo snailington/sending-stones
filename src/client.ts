@@ -9,7 +9,7 @@ import {MsgRPC} from "./RPC";
  */
 export function onMessage(startTime: number | undefined, callback: (msg: MsgRPC)=>void) {
     let lastTimestamp = startTime || 0;
-    function update(metadata) {
+    function update(metadata: any) {
         let roomBuffer = metadata["moe.snail.magic-circle/messages"];
         if(!(roomBuffer instanceof Array)) roomBuffer = [];
         
