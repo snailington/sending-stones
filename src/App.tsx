@@ -23,7 +23,6 @@ function App() {
   return (
     <>
       <ChatBox />
-      <ChatInput />
     </>
   )
 }
