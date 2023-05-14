@@ -3,10 +3,10 @@ import ChatBubble from "./ChatBubble.tsx";
 
 import "./ChatBox.css";
 
-import MagicCircle, {MsgRPC} from "magic-circle-api"
+import MagicCircle, {Message} from "magic-circle-api"
 
 function ChatBox() {
-    const [messageLog, setMessageLog] = useState(new Array<MsgRPC>());
+    const [messageLog, setMessageLog] = useState(new Array<Message>());
     
     useEffect(() => MagicCircle.onMessage(messageLog[0]?.time, (msgs) => {
         setMessageLog([...(msgs.reverse()), ...messageLog]);

@@ -1,7 +1,7 @@
 import "./ChatBubble.css"
-import {MsgRPC} from "magic-circle-api";
+import {Message} from "magic-circle-api"
 
-function ChatBubble({message}: {message: MsgRPC}) {
+function ChatBubble({message}: {message: Message}) {
     return (
         <div className="chat-bubble">
             <div className="author">{message.author}</div>
