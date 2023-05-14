@@ -16,6 +16,8 @@
 
 .chat-bubble .body {
     float: right;
+    width: 100%;
+    overflow-wrap: break-word;
 }
 
 .chat-bubble .author {
