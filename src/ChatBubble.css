@@ -10,6 +10,10 @@
     text-align: right;
 }
 
+.theme-light .chat-bubble {
+    border-color: black;
+}
+
 .chat-bubble .body {
     float: right;
 }

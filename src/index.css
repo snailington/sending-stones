@@ -5,7 +5,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #222639;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,17 +16,26 @@
   scrollbar-color: #bb99ff #222639;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+.theme-dark {
+  background-color: #222639;
 }
 
-::-webkit-scrollbar-track {
-  background: #222639;
+.theme-light {
+  background-color: #f0f2f7;
+  color: black;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #bb99ff;
   border-radius: 8px;
+}
+
+.theme-light ::-webkit-scrollbar-thumb {
+  background: black;
 }
 
 a {

@@ -6,23 +6,33 @@ import OBR from "@owlbear-rodeo/sdk";
 
 function App() {
   const [obrReady, setObrReady] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState("dark");
   
+  useEffect(() => OBR.onReady(() => {
+      OBR.theme.getTheme().then((theme) => {
+        setCurrentTheme(theme.mode.toLowerCase());
+        setObrReady(true);
+      });
+  }), []);
+
   useEffect(() => {
-    OBR.onReady(() => {
-      setObrReady(true);
-    })
-  }, []);
+    console.log("hook", obrReady);
+    if(!obrReady) return;
+    return OBR.theme.onChange((theme) => {
+      setCurrentTheme(theme.mode.toLowerCase());
+    });
+  }, [obrReady]);
   
   if(!obrReady) {
     return (
       <Loading/>
     );
   }
-  
+
   return (
-    <>
+    <div className={`theme-${currentTheme}`}>
       <ChatBox />
-    </>
+    </div>
   )
 }
 
