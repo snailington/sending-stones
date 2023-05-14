@@ -4,6 +4,7 @@ import './App.css'
 import Loading from "./Loading.tsx";
 import OBR from "@owlbear-rodeo/sdk";
 import {ChatInput} from "./ChatInput.tsx";
+import ButtonBar from "./ButtonBar.tsx";
 
 function App() {
   const [obrReady, setObrReady] = useState(false);
@@ -32,6 +33,7 @@ function App() {
 
   return (
     <div className={`theme-${currentTheme}`}>
+      <ButtonBar />
       <ChatBox />
       <ChatInput />
     </div>
