@@ -1,0 +1,23 @@
+.button-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.button-bar button {
+    display: inline-block;
+    flex: 1;
+    
+    height: 28px;
+    
+    background-color: #bb99ff;
+    border-radius: 0;
+}
+
+.theme-light .button-bar button {
+    background-color: #f0f1f6;
+}
