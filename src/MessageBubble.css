@@ -32,9 +32,11 @@
 .msg-total {
     font-size: 24px;
     font-weight: bold;
-    
-    /*
-    position: relative;
-    top: -12px;
-    */
+}
+
+.msg-footer {
+    color: rgba(255, 255, 255, 0.5);
+
+    font-style: italic;
+    font-size: 10pt;
 }
