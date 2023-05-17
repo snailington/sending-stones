@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import ChatBox from './ChatBox.tsx'
+import MessageBox from './MessageBox.tsx'
 import './App.css'
 import Loading from "./Loading.tsx";
 import OBR from "@owlbear-rodeo/sdk";
@@ -34,7 +34,7 @@ function App() {
   return (
     <div className={`theme-${currentTheme}`}>
       <ButtonBar />
-      <ChatBox />
+      <MessageBox />
       <ChatInput />
     </div>
   )

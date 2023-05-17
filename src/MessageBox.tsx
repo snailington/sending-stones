@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
-import ChatBubble from "./ChatBubble.tsx";
+import MessageBubble from "./MessageBubble.tsx";
 
-import "./ChatBox.css";
+import "./MessageBox.css";
 
 import MagicCircle, {Message} from "magic-circle-api"
 
-function ChatBox() {
+function MessageBox() {
     const [messageLog, setMessageLog] = useState(new Array<Message>());
     
     useEffect(() => MagicCircle.onMessage(messageLog[0], (msgs) => {
@@ -14,9 +14,9 @@ function ChatBox() {
     
     return (
         <div className="chat-box">
-            {messageLog.map((m) => <ChatBubble key={m.id} message={m} />)}
+            {messageLog.map((m) => <MessageBubble key={m.id} message={m} />)}
         </div>
     );
 }
 
-export default ChatBox;
+export default MessageBox;
