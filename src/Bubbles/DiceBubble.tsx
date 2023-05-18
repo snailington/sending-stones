@@ -1,16 +1,6 @@
-import {Message, RollInfo} from "magic-circle-api";
+import MagicCircle, {DiceMessage} from "magic-circle-api";
 
-export default function DiceBubble({message}: {message: Message}) {
-    const rollInfo = message.metadata as RollInfo;
-
-    let diceString = "";
-    for(const diceType of new Set(rollInfo.dice)) {
-        const count = rollInfo.dice.reduce((acc: number, d) => d == diceType ? acc + 1 : 0, 0);
-        diceString += `${count}d${diceType} `;
-    }
-    diceString = diceString.trimEnd() + (rollInfo.modifier == 0 ? "" :
-        (rollInfo.modifier > 0 ? `+` : "") + rollInfo.modifier);
-
+export default function DiceBubble({message}: {message: DiceMessage}) {
     return (
         <div className="chat-bubble">
             <div className="msg-header">
@@ -21,9 +11,9 @@ export default function DiceBubble({message}: {message: Message}) {
                 <div className="msg-text">{message.text}</div>
             </div>
             <div className="msg-footer">
-                <div className="msg-tags">{rollInfo.tags?.join(' ')}</div>
-                <div className="msg-dicestring">{diceString}</div>
-                <div className="msg-results">{rollInfo.results ? ` = [${rollInfo.results.join(', ')}]`: ""}</div>
+                <div className="msg-tags">{message.metadata.tags?.join(' ')}</div>
+                <div className="msg-dicestring">{MagicCircle.toDiceString(message)}</div>
+                <div className="msg-results">{message.metadata.results ? ` = [${message.metadata.results.join(', ')}]`: ""}</div>
             </div>
         </div>
     );

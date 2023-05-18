@@ -1,5 +1,5 @@
 import "./MessageBubble.css"
-import {Message} from "magic-circle-api"
+import {DiceMessage, Message} from "magic-circle-api"
 import ChatBubble from "./Bubbles/ChatBubble.tsx";
 import DiceBubble from "./Bubbles/DiceBubble.tsx";
 
@@ -7,7 +7,7 @@ import DiceBubble from "./Bubbles/DiceBubble.tsx";
 function MessageBubble({message}: {message: Message}) {
     switch(message.type) {
         case "dice":
-            return <DiceBubble message={message} />;
+            return <DiceBubble message={message as DiceMessage} />;
         default:
             return <ChatBubble message={message} />;
     }
