@@ -8,10 +8,14 @@
     border-radius: 8px;
     
     text-align: right;
+
+    background: rgba(0, 0, 0, 0.25);
 }
 
 .theme-light .chat-bubble {
     border-color: black;
+
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .msg-body {
@@ -39,4 +43,8 @@
 
     font-style: italic;
     font-size: 10pt;
+}
+
+.theme-light .msg-footer {
+    color: rgba(25, 25, 25, 0.75);
 }
