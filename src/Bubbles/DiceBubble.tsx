@@ -21,8 +21,9 @@ export default function DiceBubble({message}: {message: Message}) {
                 <div className="msg-text">{message.text}</div>
             </div>
             <div className="msg-footer">
-                {diceString}
-                {rollInfo.results ? ` = [${rollInfo.results.join(', ')}]`: ""}
+                <div className="msg-tags">{rollInfo.tags?.join(' ')}</div>
+                <div className="msg-dicestring">{diceString}</div>
+                <div className="msg-results">{rollInfo.results ? ` = [${rollInfo.results.join(', ')}]`: ""}</div>
             </div>
         </div>
     );

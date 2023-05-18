@@ -45,6 +45,14 @@
     font-size: 10pt;
 }
 
+.msg-footer > * {
+    display: inline;
+}
+
 .theme-light .msg-footer {
     color: rgba(25, 25, 25, 0.75);
+}
+
+.msg-tags {
+    padding-right: 12px;
 }
