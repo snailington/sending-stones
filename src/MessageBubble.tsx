@@ -1,7 +1,7 @@
 import "./MessageBubble.css"
 import {DiceMessage, Message} from "magic-circle-api"
-import ChatBubble from "./Bubbles/ChatBubble.tsx";
-import DiceBubble from "./Bubbles/DiceBubble.tsx";
+import ChatBubble from "./bubbles/ChatBubble.tsx";
+import DiceBubble from "./bubbles/DiceBubble.tsx";
 
 // Generic message container, 
 function MessageBubble({message}: {message: Message}) {

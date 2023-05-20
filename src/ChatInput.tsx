@@ -1,11 +1,12 @@
 import "./ChatInput.css";
 import {FormEvent, useRef} from "react";
 import MagicCircle from "magic-circle-api";
+import {CommandParser} from "./Commands/CommandParser.ts"
 
 export function ChatInput() {
     const chatRef: any = useRef();
 
-    function submit(evt: FormEvent<HTMLFormElement>) {
+    function onSubmit(evt: FormEvent<HTMLFormElement>) {
         evt.preventDefault();
 
         const value = chatRef.current.value;
@@ -14,9 +15,13 @@ export function ChatInput() {
         chatRef.current.value = "";
     }
 
+    function onInput(evt: InputEvent<HTMLInputElement>) {
+        const cmd = new CommandParser(evt.data);
+    }
+
     return (
-        <form className="chat-input" onSubmit={submit}>
-            <input ref={chatRef} type="text"></input>
+        <form className="chat-input" onSubmit={onSubmit}>
+            <input ref={chatRef} type="text" onInput={onInput}></input>
             <button type="submit"></button>
         </form>
     );
