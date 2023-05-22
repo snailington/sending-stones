@@ -61,6 +61,7 @@ export class Config {
     
     // set a configuration value
     set(key: string, value: string) {
+        if(this.settings.get(key) == value) return;
         this.settings.set(key, value);
         this.save();
         
