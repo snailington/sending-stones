@@ -12,10 +12,12 @@
     display: inline-block;
     flex: 1;
     
-    height: 28px;
+    height: 24px;
     
     background-color: #bb99ff;
     border-radius: 0;
+
+    padding: 0;
 }
 
 .theme-light .button-bar button {

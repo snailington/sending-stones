@@ -40,7 +40,7 @@ export class Config {
         ];
         
         const kv = keys.map((k) =>  <[string, string]>[
-            this.prefix + k,
+            k,
             window.localStorage.getItem(this.prefix + k) || ""
         ]);
         
@@ -96,7 +96,7 @@ export class Config {
  * Registers a callback to be called when the value stored at key changes
  * @returns react-style unregister callback
  */
-export function useConfig(key: string, callback: ConfigChangeEvent) : () => void {
+export function onConfigChange(key: string, callback: ConfigChangeEvent) : () => void {
     const config = Config.getInstance();
     callback(config.get(key));
     return Config.getInstance().onChange(key, callback);
