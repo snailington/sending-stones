@@ -2,23 +2,23 @@ type ConfigChangeEvent = (value: string | undefined) => void;
 
 // A group of callbacks that be invoked in mass
 class Delegate<T extends (...args: any[]) => void> {
-    callbacks: Array<T> = [];
+    nextId = 0;
+    callbacks: Map<number, T> = new Map();
     
     // Add a callback
     add(callback: T) {
-        this.callbacks.push(callback);
+        this.callbacks.set(this.nextId, callback);
+        return this.nextId++;
     }
     
     // Remove a callback
-    remove(callback: T) {
-        const idx = this.callbacks.findIndex(callback)
-        if(idx == -1) return;
-        this.callbacks.splice(idx, 1);
+    remove(id: number) {
+        this.callbacks.delete(id);
     }
     
     // Invoke a callback
     invoke(...args: any[]) {
-        for(const cb of this.callbacks) {
+        for(const [,cb] of this.callbacks) {
             cb(...args);
         }
     }
@@ -79,8 +79,10 @@ export class Config {
             delegate = new Delegate<ConfigChangeEvent>();
             this.delegates.set(key, delegate);
         }
-        delegate.add(callback);
-        return () => delegate?.remove(callback);
+        const id = delegate.add(callback);
+        return () => {
+            delegate?.remove(id);
+        }
     }
     
     private static instance: Config;
