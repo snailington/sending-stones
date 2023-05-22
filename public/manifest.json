@@ -8,7 +8,7 @@
         "title": "Sending Stones",
         "icon": "/icon.svg",
         "popover": "/",
-        "height": 300,
-        "width": 400
+        "height": 225,
+        "width": 300
     }
 }
