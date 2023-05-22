@@ -1,4 +1,5 @@
 import {CommandInfo} from "./CommandInfo.ts";
+import {handleOnRoll} from "./roll.ts";
 
 export class CommandParser {
     readonly commandInfo?: CommandInfo;
@@ -32,17 +33,7 @@ export class CommandParser {
         {
             command: "/roll",
             description: "Roll dice",
-            handler: CommandParser.handleOnRoll
+            handler: handleOnRoll
         }
     ];
-
-    private static handleOnRoll(parser: CommandParser): boolean {
-        if(!parser.argv) return false;
-        const diceString = parser.argv.slice(1).join(' ');
-        const match = diceString.match(/(?<n>\d+)\s*[dD]\s*(?<sz>\d+)\s*(?:(?<op>kh|kl)\s*(?<op_arg>\d+)?)?\s*(?:(?<mod_sign>[+-]])\s*(?<mod>\d+))?/);
-        
-        
-
-        return true;
-    }
 }
