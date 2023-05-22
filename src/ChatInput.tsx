@@ -15,8 +15,9 @@ export function ChatInput() {
         chatRef.current.value = "";
     }
 
-    function onInput(evt: InputEvent<HTMLInputElement>) {
-        const cmd = new CommandParser(evt.data);
+    function onInput(evt: FormEvent<HTMLInputElement>) {
+        const cmd = new CommandParser((evt.target as HTMLInputElement).value);
+        if(!cmd.valid) return;
     }
 
     return (
