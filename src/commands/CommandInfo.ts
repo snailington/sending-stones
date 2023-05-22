@@ -4,5 +4,5 @@ export interface CommandInfo {
     command: string;
     description: string;
     
-    handler: (this: CommandParser, argv: string[]) => void;
+    handler: (parser: CommandParser) => boolean;
 }

@@ -1,23 +1,33 @@
 import "./ChatInput.css";
-import {FormEvent, useRef} from "react";
+import {FormEvent, useRef, useState} from "react";
 import MagicCircle from "magic-circle-api";
-import {CommandParser} from "./Commands/CommandParser.ts"
+import {CommandParser} from "./commands/CommandParser.ts"
 
 export function ChatInput() {
+    const [command, setCommand] = useState<CommandParser>();
+
     const chatRef: any = useRef();
 
     function onSubmit(evt: FormEvent<HTMLFormElement>) {
         evt.preventDefault();
 
-        const value = chatRef.current.value;
-        if(value == "") return;
-        MagicCircle.sendMessage(value);
-        chatRef.current.value = "";
+        if(chatRef.current.value == "") return;
+        if(chatRef.current.value[0] == '/') {
+            console.log(command, chatRef.current.value);
+            if(command?.execute()) {
+                chatRef.current.value = "";
+                setCommand(undefined);
+            }
+        } else {
+            MagicCircle.sendMessage(chatRef.current.value).then(() =>
+                chatRef.current.value = "");
+        }
     }
 
     function onInput(evt: FormEvent<HTMLInputElement>) {
         const cmd = new CommandParser((evt.target as HTMLInputElement).value);
         if(!cmd.valid) return;
+        setCommand(cmd);
     }
 
     return (
