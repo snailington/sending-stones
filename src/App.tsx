@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react'
+import {useEffect} from 'react'
 import MessageBox from './MessageBox.tsx'
-import './App.css'
 import {ChatInput} from "./ChatInput.tsx";
 import ButtonBar from "./ButtonBar.tsx";
 import {onConfigChange} from "./config.ts";
 import OwlbearTheme from "./OwlbearTheme.tsx";
 import OBR from "@owlbear-rodeo/sdk";
+import './App.css'
 
 function App() {
   useEffect(() => onConfigChange("windowSize", (size) => {
