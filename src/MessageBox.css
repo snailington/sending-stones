@@ -1,12 +1,11 @@
 .chat-box {
-    position: absolute;
-    top: 2em;
-    bottom: 2em;
+    flex: 1;
     
-    width: 100%;
+    margin: 0 4px 0 4px;
     
     overflow: hidden scroll;
     
     display: flex;
     flex-direction: column-reverse;
+
 }

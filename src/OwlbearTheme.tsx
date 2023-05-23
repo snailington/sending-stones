@@ -1,7 +1,7 @@
 import {ReactElement, useEffect, useState} from "react";
 import OBR from "@owlbear-rodeo/sdk";
 
-export default function OwlbearTheme({ children }: { children: ReactElement | ReactElement[] }) {
+export default function OwlbearTheme({ children, className="" }: { children: ReactElement | ReactElement[], className?: string }) {
     const [currentTheme, setCurrentTheme] = useState("dark");
     
     useEffect(() => {
@@ -15,7 +15,7 @@ export default function OwlbearTheme({ children }: { children: ReactElement | Re
     }, []);
     
     return (
-        <div className={`theme-${currentTheme}`}>
+        <div className={`theme-${currentTheme} ` + className}>
             {children}
         </div>
     );

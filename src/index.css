@@ -34,6 +34,10 @@
   border-radius: 8px;
 }
 
+::-webkit-scrollbar-track {
+  margin: 4px;
+}
+
 .theme-light ::-webkit-scrollbar-thumb {
   background: black;
 }

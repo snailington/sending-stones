@@ -13,10 +13,10 @@ function App() {
   }), []);
 
   return (
-    <OwlbearTheme>
-      <ButtonBar />
-      <MessageBox />
-      <ChatInput />
+    <OwlbearTheme className="app-container">
+        <ButtonBar />
+        <MessageBox />
+        <ChatInput />
     </OwlbearTheme>
   )
 }

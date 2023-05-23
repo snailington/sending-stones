@@ -1,8 +1,4 @@
 .button-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     display: flex;
     width: 100%;
     justify-content: space-evenly;
