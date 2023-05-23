@@ -93,6 +93,14 @@ export class Config {
         Config.instance = new Config();
         return Config.instance;
     }
+
+    static get(key: string) {
+        return Config.getInstance().get(key);
+    }
+
+    static set(key: string, value: string) {
+        return Config.getInstance().set(key, value);
+    }
 }
 
 /*
@@ -102,5 +110,5 @@ export class Config {
 export function onConfigChange(key: string, callback: ConfigChangeEvent) : () => void {
     const config = Config.getInstance();
     callback(config.get(key));
-    return Config.getInstance().onChange(key, callback);
+    return config.onChange(key, callback);
 }

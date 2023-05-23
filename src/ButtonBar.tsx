@@ -3,9 +3,8 @@ import {Config} from "./config.ts";
 
 function ButtonBar() {
     function expand() {
-        const config = Config.getInstance();
-        const size = config.get("windowSize") || "small";
-        config.set("windowSize", size == "big" ? "small" : "big");
+        const size = Config.get("windowSize") || "small";
+        Config.set("windowSize", size == "big" ? "small" : "big");
     }
 
     return (
