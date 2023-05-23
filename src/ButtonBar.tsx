@@ -9,9 +9,9 @@ function ButtonBar() {
 
     return (
         <div className="button-bar">
-            <button onClick={expand}>🔎</button>
-            <button></button>
-            <button>⚙</button>
+            <button onClick={expand}>resize</button>
+            <button>macros</button>
+            <button>options</button>
         </div>
     );
 }
