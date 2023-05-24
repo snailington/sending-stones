@@ -36,7 +36,8 @@ export class Config {
     // load configuration from storage
     load() {
         const keys = [
-            "windowSize"
+            "windowSize",
+            "suppressRolls"
         ];
         
         const kv = keys.map((k) =>  <[string, string]>[

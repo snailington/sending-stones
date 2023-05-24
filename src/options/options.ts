@@ -20,7 +20,7 @@ export const optionsList: Option[] = [
     },
     {
         name: "Suppress Rolls",
-        description: "Do not resolve rolls made by /roll, etc. Requires an installed dice roller extension.",
+        description: "Do not resolve rolls made by /roll, etc. Requires a compatible dice roller extension.",
         key: "suppressRolls",
         type: "checkbox"
     }

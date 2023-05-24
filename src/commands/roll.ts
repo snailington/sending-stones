@@ -1,5 +1,6 @@
 import {CommandParser} from "./CommandParser.ts";
 import MagicCircle, {MsgRPC, RollInfo} from "magic-circle-api";
+import {Config} from "../config.ts";
 
 export function handleOnRoll(parser: CommandParser): boolean {
     if(!parser.argv) return false;
@@ -10,16 +11,32 @@ export function handleOnRoll(parser: CommandParser): boolean {
     const nDice = parseInt(match.groups["n"]);
     const szDice = parseInt(match.groups["sz"])
 
-    const dice = new Array<number>()
-    const results = new Array<number>();
+    // build dice manifest
+    const dice = Array(nDice).fill(szDice);
+    const text = "rolled" + (match.groups["msg"] ? " " + match.groups["msg"] : "");
+    const suffix = (match.groups["op"] || "") + (match.groups["op_arg"] || "") +
+        (match.groups["mod_sign"] || "") + (match.groups["mod"] || "");
 
-    for(let i = 0; i < nDice; i++) {
-        const roll = Math.floor(Math.random() * szDice + 1);
-        dice.push(szDice);
-        results.push(roll);
+    // send an unresolved roll if rolling is suppressed
+    if(Config.get("suppressRolls") == "true") {
+        MagicCircle.sendMessage(<MsgRPC>{
+            cmd: "msg",
+            type: "dice",
+            text: text,
+            metadata: <RollInfo>{
+                kind: "custom",
+                dice: dice,
+                suffix: suffix
+            }
+        });
+        return true;
     }
+
+    // roll dice
+    const results = dice.map((d) => Math.floor(Math.random() * d + 1));
     results.sort((a, b) => a - b);
 
+    // perform dice operations
     let work = results;
     const opArg = parseInt(match.groups["op_arg"]);
     switch(match.groups["op"]) {
@@ -31,19 +48,17 @@ export function handleOnRoll(parser: CommandParser): boolean {
             break;
     }
 
+    // apply modifier
     let total = work.reduce((acc, r) => acc + r);
     if(match.groups["mod_sign"]) {
         const mod = parseInt(match.groups["mod"]);
         total += match.groups["mod_sign"] ? mod : -mod;
     }
 
-    const suffix = (match.groups["op"] || "") + (match.groups["op_arg"] || "") +
-        (match.groups["mod_sign"] || "") + (match.groups["mod"] || "");
-
     MagicCircle.sendMessage(<MsgRPC>{
         cmd: "msg",
         type: "dice",
-        text: "rolled" + (match.groups["msg"] ? " " + match.groups["msg"] : ""),
+        text: text,
         metadata: <RollInfo>{
             kind: "custom",
             dice: dice,
