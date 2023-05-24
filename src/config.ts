@@ -37,6 +37,7 @@ export class Config {
     load() {
         const keys = [
             "windowSize",
+            "windowWidth",
             "suppressRolls"
         ];
         

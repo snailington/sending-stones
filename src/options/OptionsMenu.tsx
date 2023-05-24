@@ -27,7 +27,9 @@ export default function OptionsMenu({active}: {active: boolean}) {
                 inputElement = (
                     <select id={id} {...inputAttr}>
                         {option.options?.map((o) =>
-                            <option key={`${id}-${o.value}`} value={o.value}>{o.name}</option>) }
+                            <option key={`${id}-${o.value}`} value={o.value} selected={currentValue == o.value}>
+                                {o.name}
+                            </option>) }
                     </select>
                     );
                 console.log("select", option, inputElement);
