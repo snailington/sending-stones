@@ -7,9 +7,9 @@ export interface Option {
 
 export const optionsList: Option[] = [
     {
-        name: "Route to Rumble",
-        description: "If enabled, incoming message events will be routed to Rumble! chat.",
-        key: "rumbleRouting",
+        name: "Suppress Rolls",
+        description: "Do not resolve rolls made by /roll, etc",
+        key: "suppressRolls",
         type: "checkbox"
     }
 ];

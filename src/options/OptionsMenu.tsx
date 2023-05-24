@@ -1,41 +1,38 @@
 import {ChangeEvent, ReactNode} from "react";
 import {Option, optionsList} from "./options.ts";
-import "./OptionsApp.css";
-import OwlbearTheme from "../OwlbearTheme.tsx";
+import "./OptionsList.css";
+import {Config} from "../config.ts";
 
-export default function OptionsApp() {
+export default function OptionsMenu() {
     function generateOptions(option: Option, index: number): ReactNode {
         const id = "option-" + index;
-        const currentValue = window.localStorage.getItem(option.key);
+        const currentValue = Config.get(option.key);
         
         const inputAttr: any = {};
         switch(option.type) {
             case "checkbox":
                 if(currentValue == "true") inputAttr["defaultChecked"] = true;
                 inputAttr["onChange"] = (evt: ChangeEvent<HTMLInputElement>) =>
-                    window.localStorage.setItem(option.key, evt.target.checked.toString());
+                    Config.set(option.key, evt.target.checked.toString());
                 break;
             default:
                 inputAttr["defaultValue"] = currentValue;
                 inputAttr["onChange"] = (evt: ChangeEvent<HTMLInputElement>) =>
-                    window.localStorage.setItem(option.key, evt.target.value);
+                    Config.set(option.key, evt.target.value);
         }
 
         const inputElement = <input id={id} type={option.type} {...inputAttr}></input>;
         
         return (
-            <OwlbearTheme>
-                <>
-                    <h1>Magic Circle Options</h1>
-                    <div key={id} className="option-row">
-                        <label htmlFor={id}>{option.name}</label>
-                        {inputElement}
-                        <div>
-                            {option.description}
-                        </div>
+            <>
+                <div key={id} className="option-row">
+                    <label htmlFor={id}>{option.name}</label>
+                    {inputElement}
+                    <div>
+                        {option.description}
                     </div>
-                </>
-            </OwlbearTheme>
+                </div>
+            </>
         );
     }
     
