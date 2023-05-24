@@ -1,5 +1,8 @@
 .options {
     display: none;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .options.active {
