@@ -8,27 +8,30 @@
 
     top: 18px;
     bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding: 0 2ex 0 2ex;
 
     background: #222639;
 }
 
 .option-row {
-    display: flex;
     align-items: center;
     padding-top: 1em;
-    padding-bottom: 1em;
+    display: flex;
 }
 
 .option-row > label {
-    flex: 3;
+    flex: 1;
 }
 
 .option-row > input {
-    flex: 3;
     min-width: 0;
     margin-right: 2em;
 }
 
-.option-row > div {
-    flex: 3;
+.option-description {
+    padding: 0 0 0 1em;
+    width: 100%;
 }

@@ -7,7 +7,7 @@ export default function OptionsMenu({active}: {active: boolean}) {
     function generateOptions(option: Option, index: number): ReactNode {
         const id = "option-" + index;
         const currentValue = Config.get(option.key);
-        
+
         const inputAttr: any = {};
         switch(option.type) {
             case "checkbox":
@@ -15,9 +15,9 @@ export default function OptionsMenu({active}: {active: boolean}) {
                 inputAttr["onChange"] = (evt: ChangeEvent<HTMLInputElement>) =>
                     Config.set(option.key, evt.target.checked.toString());
                 break;
-            default:
-                inputAttr["defaultValue"] = currentValue;
-                inputAttr["onChange"] = (evt: ChangeEvent<HTMLInputElement>) =>
+                default:
+                    inputAttr["defaultValue"] = currentValue;
+                    inputAttr["onChange"] = (evt: ChangeEvent<HTMLInputElement>) =>
                     Config.set(option.key, evt.target.value);
         }
 
@@ -29,21 +29,23 @@ export default function OptionsMenu({active}: {active: boolean}) {
                         {option.options?.map((o) =>
                             <option key={`${id}-${o.value}`} value={o.value}>{o.name}</option>) }
                     </select>
-                );
+                    );
                 console.log("select", option, inputElement);
                 break;
-            default:
-                inputElement = <input id={id} type={option.type} {...inputAttr}></input>;
+                default:
+                    inputElement = <input id={id} type={option.type} {...inputAttr}></input>;
         }
-        
+
         return (
-            <div key={id} className="option-row">
-                <label htmlFor={id}>{option.name}</label>
-                {inputElement}
-                <div>
+            <>
+                <div key={id} className="option-row">
+                    <label htmlFor={id}>{option.name}</label>
+                    {inputElement}
+                </div>
+                <div key={`${id}-description`} className="option-description">
                     {option.description}
                 </div>
-            </div>
+            </>
         );
     }
     
