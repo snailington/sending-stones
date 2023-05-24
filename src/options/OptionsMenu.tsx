@@ -1,9 +1,9 @@
 import {ChangeEvent, ReactNode} from "react";
 import {Option, optionsList} from "./options.ts";
-import "./OptionsList.css";
+import "./OptionsMenu.css";
 import {Config} from "../config.ts";
 
-export default function OptionsMenu() {
+export default function OptionsMenu({active}: {active: boolean}) {
     function generateOptions(option: Option, index: number): ReactNode {
         const id = "option-" + index;
         const currentValue = Config.get(option.key);
@@ -24,7 +24,7 @@ export default function OptionsMenu() {
         const inputElement = <input id={id} type={option.type} {...inputAttr}></input>;
         
         return (
-            <>
+            <div className={"options " + (active ? "active" : "")}>
                 <div key={id} className="option-row">
                     <label htmlFor={id}>{option.name}</label>
                     {inputElement}
@@ -32,7 +32,7 @@ export default function OptionsMenu() {
                         {option.description}
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
     

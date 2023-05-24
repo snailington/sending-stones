@@ -9,3 +9,11 @@ body {
   height: 100vh;
   width: 100vw;
 }
+
+.view-container {
+  flex: 1;
+  height: 0;
+
+  display: flex;
+  flex-direction: column;
+}

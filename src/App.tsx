@@ -6,13 +6,13 @@ import {onConfigChange} from "./config.ts";
 import OwlbearTheme from "./OwlbearTheme.tsx";
 import OBR from "@owlbear-rodeo/sdk";
 import './App.css'
+import OptionsMenu from "./options/OptionsMenu.tsx";
 
 function App() {
   const [view, setView] = useState("");
 
   function toggleView(toggle: string) {
-    if(view == toggle) setView("");
-    else setView("toggle");
+    setView(view == toggle ? "" : toggle);
   }
 
   useEffect(() => onConfigChange("windowSize", (size) => {
@@ -22,9 +22,11 @@ function App() {
   return (
     <OwlbearTheme className="app-container">
       <ButtonBar toggleView={toggleView} />
-      <MessageBox />
-      <ChatInput />
-      <OptionsMenu active={view == "options"}/>
+      <div className="view-container">
+        <MessageBox />
+        <ChatInput />
+        <OptionsMenu active={view == "options"}/>
+      </div>
     </OwlbearTheme>
   )
 }

@@ -1,3 +1,17 @@
+.options {
+    display: none;
+}
+
+.options.active {
+    display: block;
+    position: absolute;
+
+    top: 18px;
+    bottom: 0;
+
+    background: #222639;
+}
+
 .option-row {
     display: flex;
     align-items: center;
