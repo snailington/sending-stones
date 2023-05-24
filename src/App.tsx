@@ -19,6 +19,16 @@ function App() {
     OBR.action.setHeight(size == "small" ? 225 : 10000);
   }), []);
 
+  useEffect(() => onConfigChange("windowWidth", (size) => {
+    let width;
+    switch(size) {
+      case "small": width = 180; break;
+      case "large": width = 450; break;
+      default: width = 300;
+    }
+    OBR.action.setWidth(width);
+  }), []);
+
   return (
     <OwlbearTheme className="app-container">
       <ButtonBar toggleView={toggleView} />

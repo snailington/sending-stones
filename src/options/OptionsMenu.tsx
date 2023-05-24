@@ -21,23 +21,34 @@ export default function OptionsMenu({active}: {active: boolean}) {
                     Config.set(option.key, evt.target.value);
         }
 
-        const inputElement = <input id={id} type={option.type} {...inputAttr}></input>;
+        let inputElement;
+        switch(option.type) {
+            case "select":
+                inputElement = (
+                    <select id={id} {...inputAttr}>
+                        {option.options?.map((o) =>
+                            <option key={`${id}-${o.value}`} value={o.value}>{o.name}</option>) }
+                    </select>
+                );
+                console.log("select", option, inputElement);
+                break;
+            default:
+                inputElement = <input id={id} type={option.type} {...inputAttr}></input>;
+        }
         
         return (
-            <div className={"options " + (active ? "active" : "")}>
-                <div key={id} className="option-row">
-                    <label htmlFor={id}>{option.name}</label>
-                    {inputElement}
-                    <div>
-                        {option.description}
-                    </div>
+            <div key={id} className="option-row">
+                <label htmlFor={id}>{option.name}</label>
+                {inputElement}
+                <div>
+                    {option.description}
                 </div>
             </div>
         );
     }
     
     return (
-        <form>
+        <form className={"options " + (active ? "active" : "")}>
             {optionsList.map((o, i) => generateOptions(o, i))}
         </form>
     )
