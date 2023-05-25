@@ -5,8 +5,6 @@ import DiceBubble from "./Bubbles/DiceBubble.tsx";
 
 // Generic message container, 
 function MessageBubble({message}: {message: Message}) {
-    if(!message.metadata.total) return <></>;
-
     switch(message.type) {
         case "dice":
             return <DiceBubble message={message as DiceMessage} />;
