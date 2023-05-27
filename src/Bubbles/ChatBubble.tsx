@@ -1,5 +1,6 @@
 import {Message} from "magic-circle-api";
 import BubbleWrapper from "./BubbleWrapper.tsx";
+import "./ChatBubble.css";
 
 export default function ChatBubble({message}: {message: Message}) {
     return (
